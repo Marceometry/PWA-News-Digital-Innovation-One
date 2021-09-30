@@ -26,11 +26,9 @@ self.addEventListener('active', (event) => {
 })
 
 self.addEventListener('fetch', (event) => {
-  console.log('fetch', event)
   event.respondWith(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.match(event.request).then((response) => {
-        console.log('response', response)
         return (
           response ||
           fetch(event.request).then((response) => {
