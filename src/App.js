@@ -1,6 +1,13 @@
+import { Router } from './router'
+import { GlobalStyles } from './styles/GlobalStyles'
+import { Wrapper } from './styles/Wrapper'
+import 'antd/dist/antd.css'
 
 export default function App() {
   return (
-    <h1>React App</h1>
+    <Wrapper>
+      <Router />
+      <GlobalStyles />
+    </Wrapper>
   )
 }
