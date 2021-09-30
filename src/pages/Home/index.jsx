@@ -1,11 +1,11 @@
 import { memo, useState, useEffect } from 'react'
 import { Row, Col } from 'antd'
-import { Loader } from '../../components/Loader'
+import { Message } from '../../components/Message'
 import { World, Economy, Technology } from './components'
 import api from '../../services/api'
 
 function Home() {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [news, setNews] = useState({})
 
   function handleGetNews(subjects) {
@@ -18,7 +18,6 @@ function Home() {
   }
 
   useEffect(() => {
-    setIsLoading(true)
     Promise.allSettled([
       api.getNews('world'),
       api.getNews('economy'),
@@ -26,11 +25,11 @@ function Home() {
     ]).then(handleGetNews)
   }, [])
 
-  if (isLoading) return <Loader />
+  if (isLoading) return <Message />
 
   return (
     <main>
-      <Row gutter={[24, 24]}>
+      <Row gutter={[48, 48]}>
         <Col span={24} md={16}>
           <h1>World</h1>
           <World values={news?.world} />
@@ -44,7 +43,7 @@ function Home() {
 
       <hr />
 
-      <Row gutter={[24, 24]}>
+      <Row gutter={[48, 48]}>
         <Col span={24}>
           <h1>Technology</h1>
           <Technology values={news?.technology} />

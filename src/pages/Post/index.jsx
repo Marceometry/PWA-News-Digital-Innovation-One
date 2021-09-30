@@ -1,15 +1,14 @@
 import { memo, useCallback, useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { createMarkup } from '../utils'
-import { Loader } from '../../components/Loader'
-import { Actions } from './components'
+import { RelatedPost, MainPost } from './components'
+import { Message } from '../../components/Message'
 import { Row, Col } from 'antd'
+import { PostPage } from './styles.js'
 import api from '../../services/api'
-import './style.css'
 
 function Post() {
   const { subject, id } = useParams()
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [post, setPost] = useState({})
   const [news, setNews] = useState([])
 
@@ -20,69 +19,32 @@ function Post() {
   }, [])
 
   useEffect(() => {
-    setIsLoading(true)
-
     Promise.allSettled([
       api.getNews(subject),
       api.getNewsById(subject, id),
     ]).then(handleNews)
   }, [subject, id, handleNews])
 
-  const renderImg = ({ image, description }) => (
-    <img src={image.url} alt={description} width='75%' />
-  )
+  if (isLoading) return <Message />
 
-  const renderDescription = (description) => (
-    <p dangerouslySetInnerHTML={createMarkup(description)} />
-  )
-
-  const renderPost = (post, index) => {
-    const { title, image, description, id } = post
-    return (
-      <Col span={12} key={`post-${index}`}>
-        <Link to={`/${subject}/${id}`}>
-          <article>
-            <p>
-              <strong dangerouslySetInnerHTML={createMarkup(title)} />
-            </p>
-            {image?.url
-              ? renderImg({ image, description })
-              : renderDescription(description)}
-          </article>
-        </Link>
-      </Col>
-    )
-  }
-
-  if (isLoading) return <Loader />
-
-  if (!post?.id) {
-    return <h1>Post não encontrado</h1>
-  }
-
-  const { title, image, description, body, datePublished } = post
+  if (!post?.id) return <Message>Post não encontrado</Message>
 
   return (
-    <main>
+    <PostPage>
       <Link to='/'>Home</Link>
-      <Actions post={post} subject={subject} />
-      <Row gutter={[24, 24]}>
-        <Col span={24} md={16}>
-          <p>{datePublished}</p>
-          <h1 dangerouslySetInnerHTML={createMarkup(title)}></h1>
-          {renderImg({ image, description })}
-          <p
-            className='text'
-            dangerouslySetInnerHTML={createMarkup(description)}
-          />
-          <hr />
-          <p className='text' dangerouslySetInnerHTML={createMarkup(body)} />
-        </Col>
+
+      <Row gutter={[48, 48]}>
+        <MainPost post={post} subject={subject} />
+
         <Col span={24} md={8}>
-          <Row gutter={[24, 24]}>{news?.value?.map(renderPost)}</Row>
+          <Row gutter={[24, 24]}>
+            {news?.value?.map((post) => (
+              <RelatedPost post={post} subject={subject} key={post.id} />
+            ))}
+          </Row>
         </Col>
       </Row>
-    </main>
+    </PostPage>
   )
 }
 
