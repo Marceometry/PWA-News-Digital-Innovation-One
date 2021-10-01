@@ -24,7 +24,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-<h4> Acesse em: https://pwa-news.vercel.app/ </h4>
+<h4> Acesse em: https://pwa-news-dio.vercel.app/ </h4>
 
 Este projeto foi feito durante o curso "Criando uma aplicação ReactJS de notícias utilizando PWA", do Bootcamp [LocalizaLabs React Developer](https://web.digitalinnovation.one/track/localizalabs-react-developer), pela plataforma [Digital Innovation One](https://web.digitalinnovation.one/home).
 
