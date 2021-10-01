@@ -9,10 +9,13 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     font-size: 1rem;
+    color: ${({ theme }) => theme.fontColor};
+    background-color: ${({ theme }) => theme.primaryBackground};
   }
 
   h1 {
     margin-bottom: 1.5rem;
+    color: inherit;
   }
 
   h2 {
@@ -25,7 +28,7 @@ export const GlobalStyles = createGlobalStyle`
     transition: color 0.2s;
 
     &:hover {
-      color: blue;
+      color: ${({ theme }) => theme.colors.primary};
     }
   }
 
@@ -39,6 +42,6 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   hr {
-    margin: 1.5rem 0;
+    margin: 2.5rem 0 1.5rem;
   }
 `

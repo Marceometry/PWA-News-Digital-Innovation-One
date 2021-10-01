@@ -31,7 +31,7 @@ function Post() {
 
   return (
     <PostPage>
-      <Link to='/'>Home</Link>
+      <Link to='/'>{'<'} Home</Link>
 
       <Row gutter={[48, 48]}>
         <MainPost post={post} subject={subject} />

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 function Economy({ values }) {
   return (
-    <Row gutter={[16, 16]}>
+    <Row gutter={[24, 24]}>
       {values?.map((post, index) => {
         const { title, image, description, id } = post
 

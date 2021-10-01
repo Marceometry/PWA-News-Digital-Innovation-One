@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 function Technology({ values }) {
   return (
-    <Row gutter={[16, 16]}>
+    <Row gutter={[32, 32]}>
       {values?.map((post, index) => {
         const { title, image, description, id } = post
 

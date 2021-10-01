@@ -1,13 +1,13 @@
 import { Router } from './router'
-import { GlobalStyles } from './styles/GlobalStyles'
+import { Header } from './components'
 import { Wrapper } from './styles/Wrapper'
 import 'antd/dist/antd.css'
 
 export default function App() {
   return (
     <Wrapper>
+      <Header />
       <Router />
-      <GlobalStyles />
     </Wrapper>
   )
 }
