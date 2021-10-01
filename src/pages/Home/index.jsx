@@ -29,7 +29,7 @@ function Home() {
 
   return (
     <main>
-      <Row gutter={[48, 48]}>
+      <Row gutter={[24, 24]}>
         <Col span={24} md={16}>
           <h1>World</h1>
           <World values={news?.world} />
@@ -43,7 +43,7 @@ function Home() {
 
       <hr />
 
-      <Row gutter={[48, 48]}>
+      <Row gutter={[24, 24]}>
         <Col span={24}>
           <h1>Technology</h1>
           <Technology values={news?.technology} />

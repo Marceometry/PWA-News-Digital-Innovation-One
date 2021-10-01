@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 function World({ values }) {
   return (
-    <Row gutter={[48, 24]}>
+    <Row gutter={[16, 24]}>
       {values?.map((post, index) => {
         const { title, image, description, id } = post
         const isFirst = index === 0

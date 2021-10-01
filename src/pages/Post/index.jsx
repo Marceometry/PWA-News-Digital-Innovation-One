@@ -33,11 +33,11 @@ function Post() {
     <PostPage>
       <Link to='/'>{'<'} Home</Link>
 
-      <Row gutter={[48, 48]}>
+      <Row gutter={[24, 24]}>
         <MainPost post={post} subject={subject} />
 
         <Col span={24} md={8}>
-          <Row gutter={[24, 24]}>
+          <Row gutter={[16, 16]}>
             {news?.value?.map((post) => (
               <RelatedPost post={post} subject={subject} key={post.id} />
             ))}
